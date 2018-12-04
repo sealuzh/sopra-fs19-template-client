@@ -5,6 +5,7 @@ import Header from "./views/Header";
 import AppRouter from "./components/Routers/AppRouter";
 import { AppGuard } from "./components/Guards/AppGuard";
 import { LoginGuard } from "./components/Guards/LoginGuard";
+import Login from "./components/Login";
 
 const Body = styled.div``;
 
@@ -19,7 +20,7 @@ class App extends Component {
               <Route
                 path="/app"
                 render={() => (
-                  <AppGuard isAuth={true}>
+                  <AppGuard isAuth={false}>
                     <AppRouter base={"/app"} />{" "}
                   </AppGuard>
                 )}
@@ -28,8 +29,8 @@ class App extends Component {
                 path="/login"
                 exact
                 render={() => (
-                  <LoginGuard isAuth={true}>
-                    <div>asfjosfjoasjofasjofjaosf</div>{" "}
+                  <LoginGuard isAuth={false}>
+                    <Login />
                   </LoginGuard>
                 )}
               />

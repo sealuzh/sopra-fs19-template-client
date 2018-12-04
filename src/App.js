@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./views/Header";
 import AppRouter from "./components/Routers/AppRouter";
+import { AppGuard } from "./components/Guards/AppGuard";
+import { LoginGuard } from "./components/Guards/LoginGuard";
 
 const Body = styled.div``;
 
@@ -14,12 +16,24 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Body>
-              <Route path="/app" render={() => <AppRouter base={"/app"} />} />
+              <Route
+                path="/app"
+                render={() => (
+                  <AppGuard isAuth={true}>
+                    <AppRouter base={"/app"} />{" "}
+                  </AppGuard>
+                )}
+              />
               <Route
                 path="/login"
                 exact
-                render={() => <div>asfjosfjoasjofasjofjaosf</div>}
+                render={() => (
+                  <LoginGuard isAuth={true}>
+                    <div>asfjosfjoasjofasjofjaosf</div>{" "}
+                  </LoginGuard>
+                )}
               />
+
               <Route
                 path="/"
                 exact

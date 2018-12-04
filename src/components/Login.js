@@ -11,6 +11,61 @@ const FormContainer = styled.div`
   justify-content: center;
 `;
 
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  height: 375px;
+  font-size: 16px;
+  font-weight: 300;
+  padding-left: 37px;
+  padding-right: 37px;
+  border-radius: 5px;
+  background: linear-gradient(rgb(27, 124, 186), rgb(2, 46, 101));
+  transition: opacity 0.5s ease, transform 0.5s ease;
+`;
+
+const InputField = styled.input`
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+  }
+  height: 35px;
+  padding-left: 15px;
+  margin-left: -4px;
+  border: none;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+`;
+
+const Label = styled.label`
+  color: white;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+`;
+
+const Button = styled.div`
+  &:hover {
+    transform: translateY(-2px);
+  }
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  padding-top: 8px;
+  align-self: center;
+  width: 50%;
+  height: 35px;
+  border: none;
+  border-radius: 20px;
+  margin-top: 23px;
+  background-color: rgba(16, 89, 255, 1);
+  transition: all 0.3s ease;
+`;
+
 /**
  * Classes in React allow you to have an internal state within the class and to have the React life-cycle for your component.
  * You should you a class (instead of a functional component) when:
@@ -45,7 +100,15 @@ class Login extends React.Component {
   render() {
     return (
       <BaseContainer>
-        <FormContainer>asfokasokfasooafks</FormContainer>
+        <FormContainer>
+          <Form>
+            <Label>Username</Label>
+            <InputField placeholder={"Enter here.."} />
+            <Label>Name</Label>
+            <InputField placeholder={"Enter here.."} />
+            <Button>Login</Button>
+          </Form>
+        </FormContainer>
       </BaseContainer>
     );
   }

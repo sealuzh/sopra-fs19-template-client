@@ -9,7 +9,7 @@ import { ReactLogo } from "../helpers/assets/ReactLogo";
  * https://www.styled-components.com/
  */
 const Container = styled.div`
-  height: 100px;
+  height: ${props => props.height}px;
   background: ${props => props.background};
   display: flex;
   justify-content: center;
@@ -31,7 +31,7 @@ const Title = styled.h1`
  */
 const Header = props => {
   return (
-    <Container background={props.background}>
+    <Container height={props.height}>
       <Title>SoPra FS19 rocks with React!</Title>
       <ReactLogo width={60} height={60} />
     </Container>

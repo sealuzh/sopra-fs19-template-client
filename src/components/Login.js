@@ -14,6 +14,7 @@ const FormContainer = styled.div`
 const Form = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 45%;
   height: 375px;
   font-size: 16px;
@@ -88,6 +89,10 @@ class Login extends React.Component {
     };
   }
 
+  login() {
+    alert("button clicke");
+  }
+
   /**
    * componentDidMount() is invoked immediately after a component is mounted (inserted into the tree).
    * Initialization that requires DOM nodes should go here.
@@ -106,7 +111,13 @@ class Login extends React.Component {
             <InputField placeholder={"Enter here.."} />
             <Label>Name</Label>
             <InputField placeholder={"Enter here.."} />
-            <Button>Login</Button>
+            <Button
+              onClick={() => {
+                this.login();
+              }}
+            >
+              Login
+            </Button>
           </Form>
         </FormContainer>
       </BaseContainer>

@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header background={"rgba(26, 113, 177, 1)"} />
+        <Header height={"100"} />
         <BrowserRouter>
           <Switch>
             <Body>

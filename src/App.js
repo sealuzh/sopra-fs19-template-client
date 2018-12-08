@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Header from "./views/Header";
 import AppRouter from "./components/Routers/AppRouter";
 import { AppGuard } from "./components/Guards/AppGuard";
@@ -34,12 +34,8 @@ class App extends Component {
                   </LoginGuard>
                 )}
               />
-
-              <Route
-                path="/"
-                exact
-                render={() => <div>asfjosfjoasjofasjofjaosf</div>}
-              />
+              {/*Per default, Redirect to Login*/}
+              <Route path="/" exact render={() => <Redirect to={"/login"} />} />
             </Body>
           </Switch>
         </BrowserRouter>

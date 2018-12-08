@@ -90,7 +90,22 @@ class Login extends React.Component {
   }
 
   login() {
-    alert("button clicke");
+    // both
+    if (this.state.username && this.state.name) {
+    } else {
+      alert("Please fill both fields before logging in");
+    }
+  }
+
+  /**
+   *  Every time the user enters something in the input field, the state gets updated.
+   * @param key (the key of the state for identifying the field that needs to be updated)
+   * @param value (the value that gets assigned to the identified state key)
+   */
+  handleInputChange(key, value) {
+    // Example: if the key is username, this statement is the equivalent to the following one:
+    // this.setState({'username': value});
+    this.setState({ [key]: value });
   }
 
   /**
@@ -108,9 +123,19 @@ class Login extends React.Component {
         <FormContainer>
           <Form>
             <Label>Username</Label>
-            <InputField placeholder={"Enter here.."} />
+            <InputField
+              placeholder={"Enter here.."}
+              onChange={e => {
+                this.handleInputChange("username", e.target.value);
+              }}
+            />
             <Label>Name</Label>
-            <InputField placeholder={"Enter here.."} />
+            <InputField
+              placeholder={"Enter here.."}
+              onChange={e => {
+                this.handleInputChange("name", e.target.value);
+              }}
+            />
             <Button
               onClick={() => {
                 this.login();

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Header from "./views/Header";
-import AppRouter from "./components/Routers/AppRouter";
-import { AppGuard } from "./components/Guards/AppGuard";
-import { LoginGuard } from "./components/Guards/LoginGuard";
-import Login from "./components/Login";
+import AppRouter from "./components/shared/routers/AppRouter";
+import { AppGuard } from "./components/shared/guards/AppGuard";
+import { LoginGuard } from "./components/shared/guards/LoginGuard";
+import Login from "./components/login/Login";
 
 const Body = styled.div``;
 

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { BaseContainer } from "../helpers/layout/layout";
+import { BaseContainer } from "../../helpers/layout";
+import { getDomain } from "../../helpers/getDomain";
+import User from "../shared/models/User";
 
 const FormContainer = styled.div`
   margin-top: 2em;
@@ -15,7 +17,7 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 45%;
+  width: 60%;
   height: 375px;
   font-size: 16px;
   font-weight: 300;
@@ -78,8 +80,10 @@ const Button = styled.div`
  */
 class Login extends React.Component {
   /**
-   * If you don’t initialize state and you don’t bind methods, you don’t need to implement a constructor for your React component.
-   * The constructor for a React component is called before it is mounted (rendered)
+   * If you don’t initialize the state and you don’t bind methods, you don’t need to implement a constructor for your React component.
+   * The constructor for a React component is called before it is mounted (rendered).
+   * In this case the initial state is defined in the constructor. The state is a JS object containing two fields: name and username
+   * These fields are then handled in the onChange() methods in the resp. InputFields
    */
   constructor() {
     super();
@@ -89,9 +93,31 @@ class Login extends React.Component {
     };
   }
 
+  apiCall() {
+    fetch(`${getDomain()}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        name: this.state.name
+      })
+    })
+      .then(response => response.json())
+      .then(returnedUser => {
+        const user = new User(returnedUser);
+        console.log(user);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   login() {
-    // both
     if (this.state.username && this.state.name) {
+      // perform the HTTP request
+      this.apiCall();
     } else {
       alert("Please fill both fields before logging in");
     }

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BaseContainer } from "../../helpers/layout";
 import { getDomain } from "../../helpers/getDomain";
 import User from "../shared/models/User";
+import { withRouter } from "react-router-dom";
 
 const FormContainer = styled.div`
   margin-top: 2em;
@@ -92,7 +93,10 @@ class Login extends React.Component {
       username: null
     };
   }
-
+  /**
+   * HTTP POST request is sent to the backend.
+   * If the request is successful, a new user is returned to the front-end and its token is stored in the localStorage.
+   */
   apiCall() {
     fetch(`${getDomain()}/users`, {
       method: "POST",
@@ -107,10 +111,11 @@ class Login extends React.Component {
       .then(response => response.json())
       .then(returnedUser => {
         const user = new User(returnedUser);
-        console.log(user);
+        localStorage.setItem("token", user.token);
       })
       .catch(err => {
-        console.log(err);
+        // TODO: error handling
+        alert("Something went wrong during the login");
       });
   }
 
@@ -176,4 +181,8 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+/**
+ * You can get access to the history object's properties via the withRouter.
+ * withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
+ */
+export default withRouter(Login);

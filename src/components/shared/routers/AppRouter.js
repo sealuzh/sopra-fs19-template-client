@@ -1,32 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import { Redirect, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import Game from "../../game/Game";
+import { GameGuard } from "../guards/GameGuard";
+import GameRouter from "./GameRouter";
+import { LoginGuard } from "../guards/LoginGuard";
+import Login from "../../login/Login";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+const Container = styled.div``;
 
 class AppRouter extends React.Component {
   render() {
-    /**
-     * "this.props.base" is "/app" because as been passed as a prop in the parent of AppRouter, i.e., App.js
-     */
     return (
-      <Container>
-        <Route
-          exact
-          path={`${this.props.base}/dashboard`}
-          render={() => <Game />}
-        />
-
-        <Route
-          exact
-          path={`${this.props.base}`}
-          render={() => <Redirect to={`${this.props.base}/dashboard`} />}
-        />
-      </Container>
+      <BrowserRouter>
+        <Switch>
+          <Container>
+            <Route
+              path="/game"
+              render={() => (
+                <GameGuard>
+                  <GameRouter base={"/game"} />
+                </GameGuard>
+              )}
+            />
+            <Route
+              path="/login"
+              exact
+              render={() => (
+                <LoginGuard isAuth={false}>
+                  <Login />
+                </LoginGuard>
+              )}
+            />
+            <Route path="/" exact render={() => <Redirect to={"/game"} />} />
+          </Container>
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

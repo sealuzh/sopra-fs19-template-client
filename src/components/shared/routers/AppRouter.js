@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import Game from "../../game/Game";
 import { GameGuard } from "../guards/GameGuard";
 import GameRouter from "./GameRouter";
 import { LoginGuard } from "../guards/LoginGuard";

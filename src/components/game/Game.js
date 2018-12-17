@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { BaseContainer } from "../../helpers/layout";
 import { getDomain } from "../../helpers/getDomain";
 import Player from "../../views/Player";
-import { Spinner } from "../../views/Spinner";
+import { Spinner } from "../../views/design/Spinner";
+import { Button } from "../../views/design/Button";
+import { withRouter } from "react-router-dom";
 
 const Container = styled(BaseContainer)`
   color: white;
@@ -28,6 +30,11 @@ class Game extends React.Component {
     this.state = {
       users: null
     };
+  }
+
+  logout() {
+    localStorage.removeItem("token");
+    this.props.history.push("/login");
   }
 
   componentDidMount() {
@@ -58,19 +65,28 @@ class Game extends React.Component {
         {!this.state.users ? (
           <Spinner />
         ) : (
-          <Users>
-            {this.state.users.map((user, i) => {
-              return (
-                <PlayerContainer key={i}>
-                  <Player user={user} />
-                </PlayerContainer>
-              );
-            })}
-          </Users>
+          <div>
+            <Users>
+              {this.state.users.map((user, i) => {
+                return (
+                  <PlayerContainer key={i}>
+                    <Player user={user} />
+                  </PlayerContainer>
+                );
+              })}
+            </Users>
+            <Button
+              onClick={() => {
+                this.logout();
+              }}
+            >
+              Logout
+            </Button>
+          </div>
         )}
       </Container>
     );
   }
 }
 
-export default Game;
+export default withRouter(Game);

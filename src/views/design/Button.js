@@ -10,7 +10,6 @@ export const Button = styled.button`
   font-size: 13px;
   text-align: center;
   color: rgba(255, 255, 255, 1);
-  align-self: center;
   width: ${props => props.width || null};
   height: 35px;
   border: none;

@@ -63,7 +63,7 @@ class Game extends React.Component {
     return (
       <Container>
         <h2>Happy Coding! </h2>
-        <p>Get all users from secure and point:</p>
+        <p>Get all users from secure end point:</p>
         {!this.state.users ? (
           <Spinner />
         ) : (

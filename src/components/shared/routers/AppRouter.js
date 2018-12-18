@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { GameGuard } from "../guards/GameGuard";
+import { GameGuard } from "../routeProtectors/GameGuard";
 import GameRouter from "./GameRouter";
-import { LoginGuard } from "../guards/LoginGuard";
+import { LoginGuard } from "../routeProtectors/LoginGuard";
 import Login from "../../login/Login";
 
 const Container = styled.div``;

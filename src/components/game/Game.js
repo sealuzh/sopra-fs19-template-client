@@ -47,8 +47,10 @@ class Game extends React.Component {
       .then(response => response.json())
       .then(async users => {
         // delays continuous execution of an async operation for 0.8 seconds.
-        // fake async call, so that the spinner can be displayed
+        // This is just a fake async call, so that the spinner can be displayed
+        // feel free to remove it :)
         await new Promise(resolve => setTimeout(resolve, 800));
+
         this.setState({ users });
       })
       .catch(err => {
@@ -60,22 +62,23 @@ class Game extends React.Component {
   render() {
     return (
       <Container>
-        <h2>Happy Coding! {} </h2>
+        <h2>Happy Coding! </h2>
         <p>Get all users from secure and point:</p>
         {!this.state.users ? (
           <Spinner />
         ) : (
           <div>
             <Users>
-              {this.state.users.map((user, i) => {
+              {this.state.users.map(user => {
                 return (
-                  <PlayerContainer key={i}>
+                  <PlayerContainer key={user.id}>
                     <Player user={user} />
                   </PlayerContainer>
                 );
               })}
             </Users>
             <Button
+              width="100%"
               onClick={() => {
                 this.logout();
               }}

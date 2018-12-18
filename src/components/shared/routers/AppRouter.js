@@ -26,7 +26,7 @@ class AppRouter extends React.Component {
               path="/login"
               exact
               render={() => (
-                <LoginGuard isAuth={false}>
+                <LoginGuard>
                   <Login />
                 </LoginGuard>
               )}

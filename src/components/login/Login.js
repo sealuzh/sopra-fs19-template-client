@@ -50,6 +50,12 @@ const Label = styled.label`
   text-transform: uppercase;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
 /**
  * Classes in React allow you to have an internal state within the class and to have the React life-cycle for your component.
  * You should you a class (instead of a functional component) when:
@@ -77,7 +83,7 @@ class Login extends React.Component {
    * HTTP POST request is sent to the backend.
    * If the request is successful, a new user is returned to the front-end and its token is stored in the localStorage.
    */
-  apiCall() {
+  login() {
     fetch(`${getDomain()}/users`, {
       method: "POST",
       headers: {
@@ -91,24 +97,18 @@ class Login extends React.Component {
       .then(response => response.json())
       .then(returnedUser => {
         const user = new User(returnedUser);
+        // store the token into the local storage
         localStorage.setItem("token", user.token);
         // user login successfully worked --> navigate to the route /game in the GameRouter
         this.props.history.push(`/game`);
       })
       .catch(err => {
-        // TODO: error handling
-        console.log(err);
-        alert("Something went wrong during the login");
+        if (err.message.match(/Failed to fetch/)) {
+          alert("The server cannot be reached. Did you start it?");
+        } else {
+          alert(`Something went wrong during the login: ${err.message}`);
+        }
       });
-  }
-
-  login() {
-    if (this.state.username && this.state.name) {
-      // perform the HTTP request
-      this.apiCall();
-    } else {
-      alert("Please fill both fields before logging in");
-    }
   }
 
   /**
@@ -138,26 +138,29 @@ class Login extends React.Component {
           <Form>
             <Label>Username</Label>
             <InputField
-              placeholder={"Enter here.."}
+              placeholder="Enter here.."
               onChange={e => {
                 this.handleInputChange("username", e.target.value);
               }}
             />
             <Label>Name</Label>
             <InputField
-              placeholder={"Enter here.."}
+              placeholder="Enter here.."
               onChange={e => {
                 this.handleInputChange("name", e.target.value);
               }}
             />
-            <Button
-              width={"50%"}
-              onClick={() => {
-                this.login();
-              }}
-            >
-              Login
-            </Button>
+            <ButtonContainer>
+              <Button
+                disabled={!this.state.username || !this.state.name}
+                width="50%"
+                onClick={() => {
+                  this.login();
+                }}
+              >
+                Login
+              </Button>
+            </ButtonContainer>
           </Form>
         </FormContainer>
       </BaseContainer>

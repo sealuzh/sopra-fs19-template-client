@@ -58,7 +58,7 @@ const ButtonContainer = styled.div`
 
 /**
  * Classes in React allow you to have an internal state within the class and to have the React life-cycle for your component.
- * You should you a class (instead of a functional component) when:
+ * You should have a class (instead of a functional component) when:
  * - You need an internal state that cannot be achieved via props from other parent components
  * - You fetch data from the server (e.g., in componentDidMount())
  * - You want to access the DOM via Refs

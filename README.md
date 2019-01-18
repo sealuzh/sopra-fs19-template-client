@@ -22,6 +22,18 @@ Once you have done all of this, in the template there are two main external depe
 - [styled-components](https://www.styled-components.com/docs)
   It removes the mapping between components and styles (i.e. external css files). This means that when you're defining your styles, you're actually creating a normal React component, that has your styles attached to it
 * [react-router-dom](https://reacttraining.com/react-router/web/guides/quick-start) Declarative routing for React being a collection of navigational components that compose declaratively with your application. 
+
+## IDE Recommendation
+As a student, you have the possibility with [JetBrains](https://www.jetbrains.com/student/) to obtain a free individual license and have access to several IDEs. 
+We recommend you to use [WebStorm](https://www.jetbrains.com/webstorm/specials/webstorm/webstorm.html?gclid=EAIaIQobChMIyPOj5f723wIVqRXTCh3SKwtYEAAYASAAEgLtMvD_BwE&gclsrc=aw.ds) for your front-end. 
+Once you have downloaded and installed it, you can add the following WebStorm plugins: 
+> Go to Preferences --> Plugins --> Browse Repositories and look for: 
+*  [styled-components](https://plugins.jetbrains.com/plugin/9997-styled-components) (provides coding assistance like CSS Highlighting for Styled Components)
+* [prettier](https://plugins.jetbrains.com/plugin/10456-prettier) (a smart code formatter)
+* [Material Theme UI](https://plugins.jetbrains.com/plugin/8006-material-theme-ui) (Material Theme for Jetbrains IDEs, allowing a total customization of the IDE including Themes, Color Schemes, Icons and many other features.)
+
+Feel free to use other IDEs (e.g. [VisualStudio](https://code.visualstudio.com/)) if you want. 
+
 ## Prerequisites and Installation
 
 In the project directory, you can run:
